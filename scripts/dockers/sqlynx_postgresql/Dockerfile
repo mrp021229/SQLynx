@@ -1,5 +1,5 @@
 from ubuntu:22.04
-LABEL maintainer="Squirrel"
+LABEL maintainer="SQLynx"
 
 # common config
 RUN apt-get update
@@ -42,15 +42,15 @@ WORKDIR /home
 ARG CACHEBUST=1
 
 # ENV all_proxy=socks5://192.168.1.54:7897
-RUN git clone https://github.com/mrp021229/Squirrel.git && \
-    cd Squirrel && git submodule update --init && \
+RUN git clone https://github.com/mrp021229/SQLynx.git && \
+    cd SQLynx && git submodule update --init && \
     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DPOSTGRESQL=ON && \
     cmake --build build -j && \
     cd AFLplusplus/ && LLVM_CONFIG=llvm-config-14 make -j20
 
 RUN git clone https://github.com/postgres/postgres.git postgres/ && \
     mkdir bld/ && cd bld/ && \
-    CC=/home/Squirrel/AFLplusplus/afl-cc CXX=/home/Squirrel/AFLplusplus/afl-c++ \
+    CC=/home/SQLynx/AFLplusplus/afl-cc CXX=/home/SQLynx/AFLplusplus/afl-c++ \
     ../postgres/configure
 
 RUN cd bld/ && make -j && sudo make install && \
@@ -58,9 +58,9 @@ RUN cd bld/ && make -j && sudo make install && \
     AFL_IGNORE_PROBLEMS=1 /usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
 
 RUN AFL_DEBUG=1 __AFL_SHM_ID=1234 /usr/local/pgsql/bin/postgres 2>&1 | grep "__afl_map_size" | tail -n 1 | cut -d"," -f8 | cut -d" " -f 3 > /tmp/mapsize
-# WORKDIR /home/Squirrel/build
-# ENTRYPOINT ./test_client /home/Squirrel/data/config_postgresql.yml
-WORKDIR /home/Squirrel/scripts/utils
+# WORKDIR /home/SQLynx/build
+# ENTRYPOINT ./test_client /home/SQLynx/data/config_postgresql.yml
+WORKDIR /home/SQLynx/scripts/utils
 # ENTRYPOINT AFL_MAP_SIZE=$(cat /tmp/mapsize) python3 run.py postgresql ../../data/fuzz_root/pqsql_input/
 #docker中适配python-sqlglot环境，试运行sqlglot脚本
 # AFL_IGNORE_PROBLEMS=1 AFL_MAP_SIZE=$(cat /tmp/mapsize) python3 run.py postgresql ../../data/fuzz_root/pqsql_input/

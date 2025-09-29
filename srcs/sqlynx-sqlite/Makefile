@@ -1,5 +1,5 @@
-CC  = /home/Squirrel/AFLplusplus/afl-cc
-CXX = /home/Squirrel/AFLplusplus/afl-c++
+CC  = /home/SQLynx/AFLplusplus/afl-cc
+CXX = /home/SQLynx/AFLplusplus/afl-c++
 
 # C++ 编译选项（把原来的 CFLAGS 内容搬过来，并加上标准与优化/调试）
 CXXFLAGS = -std=c++17 -O2 -g -I/home/sqlite3/bld

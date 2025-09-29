@@ -1,5 +1,5 @@
-CC  = /home/Squirrel/AFLplusplus/afl-cc
-CXX = /home/Squirrel/AFLplusplus/afl-c++
+CC  = /home/SQLynx/AFLplusplus/afl-cc
+CXX = /home/SQLynx/AFLplusplus/afl-c++
 
 # 指向你编译好的 duckdb（bld 目录）
 CXXFLAGS = -std=c++17 -O2 -g -I/home/duckdb/src/include

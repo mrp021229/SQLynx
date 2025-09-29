@@ -40,7 +40,7 @@ def getSumFuc():
     sql = """
             select a,sum(b) from a;
             """
-    file_path = "/home/Squirrel/srcs/sqlynx_mysql/mysql_seed.pkl"
+    file_path = "/home/SQLynx/srcs/sqlynx_mysql/mysql_seed.pkl"
 
 
     # ?
@@ -521,7 +521,7 @@ def fill_sql(sql):
 # print(filled_sql)
 
 def get_sql():
-    with open('/home/Squirrel/srcs/sqlynx-mysql/mutation-mysql.txt', 'r', encoding='utf-8') as file:
+    with open('/home/SQLynx/srcs/sqlynx-mysql/mutation-mysql.txt', 'r', encoding='utf-8') as file:
         # 
         content = file.read()
 
@@ -537,7 +537,7 @@ def get_sql():
 
 def write(sql):
     # 
-    output_file = "/home/Squirrel/srcs/sqlynx-mysql/filledSQL.txt"
+    output_file = "/home/SQLynx/srcs/sqlynx-mysql/filledSQL.txt"
     with open(output_file, "a", encoding="utf-8") as f:
         f.write(sql + ";\n")
 

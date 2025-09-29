@@ -40,7 +40,7 @@ def getSumFuc():
     sql = """
             select a,sum(b) from a;
             """
-    file_path = "/home/Squirrel/srcs/sqlynx-pgsql/pgsql_seed.pkl"
+    file_path = "/home/SQLynx/srcs/sqlynx-pgsql/pgsql_seed.pkl"
 
 
     # 浣跨�? sqlglot 瑙ｆ�? SQL 锟�?锟�?

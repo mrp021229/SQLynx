@@ -1,5 +1,5 @@
 from ubuntu:22.04
-LABEL maintainer="Squirrel"
+LABEL maintainer="SQLynx"
 
 
 
@@ -61,8 +61,8 @@ RUN sudo apt-get -y install apt-transport-https curl software-properties-common 
 
 
 ARG CACHEBUST=1
-RUN git clone https://github.com/mrp021229/Squirrel.git && \
-    cd Squirrel && git submodule update --init && \
+RUN git clone https://github.com/mrp021229/SQLynx.git && \
+    cd SQLynx && git submodule update --init && \
     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DMYSQL=ON && \
     cmake --build build -j && \
     cd AFLplusplus/ && LLVM_CONFIG=llvm-config-14 make -j20
@@ -71,7 +71,7 @@ RUN git clone https://github.com/mrp021229/Squirrel.git && \
 # RUN git clone --branch mysql-8.0.0 --depth 1 https://github.com/mysql/mysql-server.git mysql
 # RUN sudo apt-get -y install apt-transport-https curl software-properties-common gnutls-dev
 # RUN mkdir bld && cd bld/ && \
-#     CC=/home/Squirrel/AFLplusplus/afl-clang-fast CXX=/home/Squirrel/AFLplusplus/afl-clang-fast++ \
+#     CC=/home/SQLynx/AFLplusplus/afl-clang-fast CXX=/home/SQLynx/AFLplusplus/afl-clang-fast++ \
 #     cmake ../mysql/ -DDOWNLOAD_BOOST=1 -DWITH_BOOST=../boost \
 #     -DWITH_DEBUG=1 -DCPACK_MONOLITHIC_INSTALL=1 -DWITH_UNIT_TESTS=OFF
 
@@ -81,8 +81,8 @@ RUN git clone https://github.com/mrp021229/Squirrel.git && \
 
 # 构建 MySQL（引用 OpenSSL 1.1.1）
 RUN mkdir bld && cd bld/ && \
-    CC=/home/Squirrel/AFLplusplus/afl-clang-fast \
-    CXX=/home/Squirrel/AFLplusplus/afl-clang-fast++ \
+    CC=/home/SQLynx/AFLplusplus/afl-clang-fast \
+    CXX=/home/SQLynx/AFLplusplus/afl-clang-fast++ \
     cmake ../mysql/ \
         -DDOWNLOAD_BOOST=0 \
         -DWITH_BOOST=/home/boost/boost_1_73_0 \
@@ -112,6 +112,6 @@ RUN sudo chown dobigthing:dobigthing /usr/local/mysql/ -R && \
 #            --datadir=/usr/local/mysql/data --log-error=err_log.err \
 #            --pid-file=server_pid.pid --max_statement_time=1
 RUN AFL_DEBUG=1 __AFL_SHM_ID=1234 /usr/local/mysql/bin/mysqld 2>&1 | grep "__afl_map_size" | tail -n 1 | cut -d"," -f8 | cut -d" " -f 3 > /tmp/mapsize
-WORKDIR /home/Squirrel/scripts/utils
+WORKDIR /home/SQLynx/scripts/utils
 # ENTRYPOINT AFL_IGNORE_PROBLEMS=1 AFL_MAP_SIZE=$(cat /tmp/mapsize) python3 run.py mysql ../../data/fuzz_root/mysql_input/
 # AFL_DEBUG=1

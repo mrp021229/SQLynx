@@ -106,7 +106,7 @@ std::ofstream sql_file;
 // std::ofstream log_file;
 
 void open_log_files_from_local_index() {
-  const std::string index_path = "/home/Squirrel/srcs/sqlynx-sqlite/index.txt";
+  const std::string index_path = "/home/SQLynx/srcs/sqlynx-sqlite/index.txt";
   int index = 0;
 
   // Step 1: 读取当前 index
@@ -235,4 +235,4 @@ int main(void) {
       ofs.close();
   return 0;
 }
-// /home/Squirrel/AFLplusplus/afl-fuzz -i /home/Squirrel/data/fuzz_root/input/ -o /home/output ./sqlite_fuzz
+// /home/SQLynx/AFLplusplus/afl-fuzz -i /home/SQLynx/data/fuzz_root/input/ -o /home/output ./sqlite_fuzz

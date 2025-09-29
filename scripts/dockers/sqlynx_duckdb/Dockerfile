@@ -1,5 +1,5 @@
 from ubuntu:22.04
-LABEL maintainer="Squirrel"
+LABEL maintainer="SQLynx"
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -44,10 +44,10 @@ RUN chmod +w /etc/sudoers && \
 USER dobigthing
 WORKDIR /home
 
-# COPY Squirrel/ Squirrel/
-# RUN sudo chmod -R 777 Squirrel
-# RUN sudo chown -R dobigthing Squirrel
-# RUN cd Squirrel && \
+# COPY SQLynx/ SQLynx/
+# RUN sudo chmod -R 777 SQLynx
+# RUN sudo chown -R dobigthing SQLynx
+# RUN cd SQLynx && \
 #     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DSQLITE=ON && \
 #     cmake --build build -j && \
 #     cd AFLplusplus/ && LLVM_CONFIG=llvm-config-14 make -j20
@@ -60,8 +60,8 @@ WORKDIR /home
 
 # WORKDIR /home/sqlite3/bld
 
-# ENV CC=/home/Squirrel/AFLplusplus/afl-cc
-# ENV CXX=/home/Squirrel/AFLplusplus/afl-c++
+# ENV CC=/home/SQLynx/AFLplusplus/afl-cc
+# ENV CXX=/home/SQLynx/AFLplusplus/afl-c++
 # RUN ../configure && make -j && make sqlite3.c
 
 # RUN $CC $CFLAGS -I. -c \
@@ -73,5 +73,5 @@ WORKDIR /home
 #     /home/sqlite3/test/ossfuzz.o /home/sqlite3/test/ossshell.o -o /home/ossfuzz \
 #    ./sqlite3.o -ldl -pthread
 
-# WORKDIR /home/Squirrel/scripts/utils
+# WORKDIR /home/SQLynx/scripts/utils
 # ENTRYPOINT python3 run.py sqlite ../../data/fuzz_root/input

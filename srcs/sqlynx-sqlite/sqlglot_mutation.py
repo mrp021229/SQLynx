@@ -156,7 +156,7 @@ class SQLRandomReplacer:
 
 def get_mutated_sql(sql):
     # print("mmm")
-    # print(sql)/home/Squirrel/srcs/sqlglot-pgsql/pg
+    # print(sql)/home/SQLynx/srcs/sqlglot-pgsql/pg
     if manager is None:
         raise RuntimeError("ExpressionSetManager not initialized")
     # with open("memtest.txt", "a") as f:
@@ -179,10 +179,10 @@ def get_mutated_sql(sql):
 
 if __name__ == "__main__":
     start_time = time.time()
-    file_path = "/home/Squirrel/srcs/sqlynx-sqlite/sqlite_seed.pkl"
+    file_path = "/home/SQLynx/srcs/sqlynx-sqlite/sqlite_seed.pkl"
 
     manager.load_from_file(file_path)
-#from squirrel-pgsql
+#from SQLynx-pgsql
     sql = """
     CREATE TABLE v0 ( v1 INT , v2 INT , v3 INT CONSTRAINT xx CHECK ( v3 ) ) ;
     create index x on v0(v2, v3);

@@ -1,5 +1,5 @@
 from ubuntu:22.04
-LABEL maintainer="Squirrel"
+LABEL maintainer="SQLynx"
 
 # common config
 RUN apt-get update && \
@@ -58,15 +58,15 @@ RUN apt-get update && apt-get -y build-dep mariadb
 USER dobigthing
 WORKDIR /home
 ARG CACHEBUST=1
-RUN git clone https://github.com/mrp021229/Squirrel.git && \
-    cd Squirrel && git submodule update --init && \
+RUN git clone https://github.com/mrp021229/SQLynx.git && \
+    cd SQLynx && git submodule update --init && \
     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && \
     cmake --build build -j && \
     cd AFLplusplus/ && LLVM_CONFIG=llvm-config-14 make -j20
 
 RUN git clone --depth=1 https://github.com/MariaDB/server.git mariadb && \
     mkdir bld && cd bld/ && \
-    CC=/home/Squirrel/AFLplusplus/afl-clang-fast CXX=/home/Squirrel/AFLplusplus/afl-clang-fast++ cmake ../mariadb/ && \
+    CC=/home/SQLynx/AFLplusplus/afl-clang-fast CXX=/home/SQLynx/AFLplusplus/afl-clang-fast++ cmake ../mariadb/ && \
     make -j20 && sudo cmake --install . --prefix /usr/local/mysql/
 
 RUN sudo chown dobigthing:dobigthing /usr/local/mysql/ -R && \
@@ -75,6 +75,6 @@ RUN sudo chown dobigthing:dobigthing /usr/local/mysql/ -R && \
 
 # Get map size and save it to /tmp/mapsize
 RUN AFL_DEBUG=1 __AFL_SHM_ID=1234 /usr/local/mysql/bin/mariadbd 2>&1 | tail -n 1 | cut -d"," -f8 | cut -d" " -f 3 > /tmp/mapsize
-WORKDIR /home/Squirrel/scripts/utils
+WORKDIR /home/SQLynx/scripts/utils
 # ENTRYPOINT AFL_MAP_SIZE=$(cat /tmp/mapsize) python3 run.py mariadb ../../data/fuzz_root/mysql_input/
 # python3 run.py mariadb ../../data/fuzz_root/mariadb_crash/

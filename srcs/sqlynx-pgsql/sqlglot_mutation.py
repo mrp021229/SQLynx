@@ -177,10 +177,10 @@ def get_mutated_sql(sql):
 
 if __name__ == "__main__":
     start_time = time.time()
-    file_path = "/home/Squirrel/srcs/sqlynx-pgsql/pgsql_seed.pkl"
+    file_path = "/home/SQLynx/srcs/sqlynx-pgsql/pgsql_seed.pkl"
 
     manager.load_from_file(file_path)
-#from squirrel-pgsql
+#from v-pgsql
     sql = """
     
     insert into v0(v1,v3) values(10,10);
