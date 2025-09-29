@@ -40,19 +40,19 @@ RUN chmod +w /etc/sudoers && \
 USER dobigthing
 WORKDIR /home
 
-COPY Squirrel/ Squirrel/
-RUN sudo chmod -R 777 Squirrel
-RUN sudo chown -R dobigthing Squirrel
-RUN cd Squirrel && \
-    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DSQLITE=ON && \
-    cmake --build build -j && \
-    cd AFLplusplus/ && LLVM_CONFIG=llvm-config-14 make -j20
+# COPY Squirrel/ Squirrel/
+# RUN sudo chmod -R 777 Squirrel
+# RUN sudo chown -R dobigthing Squirrel
+# RUN cd Squirrel && \
+#     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DSQLITE=ON && \
+#     cmake --build build -j && \
+#     cd AFLplusplus/ && LLVM_CONFIG=llvm-config-14 make -j20
 
-# ARG CFLAGS="-DSQLITE_MAX_LENGTH=128000000 -DSQLITE_MAX_SQL_LENGTH=128000000 -DSQLITE_MAX_MEMORY=25000000 -DSQLITE_PRINTF_PRECISION_LIMIT=1048576 -DSQLITE_DEBUG=1 -DSQLITE_MAX_PAGE_COUNT=16384"
+# # ARG CFLAGS="-DSQLITE_MAX_LENGTH=128000000 -DSQLITE_MAX_SQL_LENGTH=128000000 -DSQLITE_MAX_MEMORY=25000000 -DSQLITE_PRINTF_PRECISION_LIMIT=1048576 -DSQLITE_DEBUG=1 -DSQLITE_MAX_PAGE_COUNT=16384"
 
-COPY sqlite3/ sqlite3/
-RUN sudo chmod -R 777 sqlite3
-RUN sudo chown -R dobigthing sqlite3
+# COPY sqlite3/ sqlite3/
+# RUN sudo chmod -R 777 sqlite3
+# RUN sudo chown -R dobigthing sqlite3
 # RUN git clone https://github.com/sqlite/sqlite sqlite3/ && cd sqlite3 && mkdir bld
 
 # WORKDIR /home/sqlite3/bld
