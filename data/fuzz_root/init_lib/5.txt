@@ -1,0 +1,3 @@
+PRAGMA foreign_keys = TRUE;
+CREATE INDEX i0 ON t0(0) WHERE 0;
+INSERT INTO vt0 VALUES (0);

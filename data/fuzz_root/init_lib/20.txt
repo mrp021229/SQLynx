@@ -1,0 +1,4 @@
+CREATE TABLE t1 (aa, bb);
+CREATE INDEX t1x1 ON t1(ABS(aa), ABS(bb));
+INSERT INTO t1 VALUES (-2, -3), (2, -3), (-2, 3), (2, 3);
+SELECT * FROM (t1);

@@ -1,0 +1,4 @@
+CREATE TABLE aux.t1 (a, b, c);
+SELECT 'abc';
+END;
+DETACH AS aux;

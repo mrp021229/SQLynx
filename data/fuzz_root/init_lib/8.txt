@@ -1,0 +1,6 @@
+PRAGMA recursive_triggers = TRUE;
+CREATE TABLE t0 (a, b, c UNIQUE);
+CREATE UNIQUE INDEX i0 ON t0(b) WHERE a;
+DELETE FROM t0;
+END;
+INSERT INTO t0 (a, b, c) VALUES (0, 0, 9), (1, 1, 1);
