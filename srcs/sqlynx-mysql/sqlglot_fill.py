@@ -40,7 +40,7 @@ def getSumFuc():
     sql = """
             select a,sum(b) from a;
             """
-    file_path = "/home/SQLynx/srcs/sqlynx_mysql/mysql_seed.pkl"
+    file_path = "/home/SQLynx/srcs/sqlynx-mysql/mysql_seed.pkl"
 
 
     # ?
