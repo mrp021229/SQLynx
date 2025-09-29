@@ -26,7 +26,7 @@ def get_mutator_py_path(database):
     database = "sqlite"
   if database == "duckdb":
     database = "duckdb"
-  return f"{ROOTPATH}/srcs/sqlglot-{database}"
+  return f"{ROOTPATH}/srcs/sqlynx-{database}"
 
 def get_config_path(database):
   return f"{ROOTPATH}/data/config_{database}.yml"

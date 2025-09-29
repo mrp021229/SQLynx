@@ -25,7 +25,7 @@ def get_mutator_py_path(database):
     database = "pgsql"
   if database == "sqlite":
     database = "sqlite"
-  return f"{ROOTPATH}/srcs/sqlglot-{database}"
+  return f"{ROOTPATH}/srcs/sqlynx-{database}"
 
 def get_config_path(database):
   return f"{ROOTPATH}/data/config_{database}.yml"
