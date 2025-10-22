@@ -52,16 +52,23 @@ WORKDIR /home
 RUN git clone --branch mysql-8.0.27 --depth 1 https://github.com/mysql/mysql-server.git mysql
 
 # 安装依赖 + 下载 Boost
-COPY boost_1_73_0.tar.gz /home/
+# COPY boost_1_73_0.tar.gz /home/
 
+# RUN sudo apt-get -y install apt-transport-https curl software-properties-common gnutls-dev && \
+#     mkdir -p /home/boost && \
+#     tar -xzf /home/boost_1_73_0.tar.gz -C /home/boost && \
+#     rm /home/boost_1_73_0.tar.gz
+# 安装依赖 + 下载 Boost
 RUN sudo apt-get -y install apt-transport-https curl software-properties-common gnutls-dev && \
     mkdir -p /home/boost && \
+    curl -L --retry 5 --retry-delay 5 \
+      -o /home/boost_1_73_0.tar.gz \
+      https://archives.boost.io/release/1.73.0/source/boost_1_73_0.tar.gz && \
     tar -xzf /home/boost_1_73_0.tar.gz -C /home/boost && \
     rm /home/boost_1_73_0.tar.gz
 
-
 ARG CACHEBUST=1
-RUN git clone https://github.com/mrp021229/SQLynx.git && \
+RUN git clone https://github.com/mrp021229/SQLynx.git SQLynx && \
     cd SQLynx && git submodule update --init && \
     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DMYSQL=ON && \
     cmake --build build -j && \

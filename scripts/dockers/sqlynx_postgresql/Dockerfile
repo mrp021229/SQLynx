@@ -42,7 +42,7 @@ WORKDIR /home
 ARG CACHEBUST=1
 
 # ENV all_proxy=socks5://192.168.1.54:7897
-RUN git clone https://github.com/mrp021229/SQLynx.git && \
+RUN git clone https://github.com/mrp021229/SQLynx.git SQLynx && \
     cd SQLynx && git submodule update --init && \
     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DPOSTGRESQL=ON && \
     cmake --build build -j && \

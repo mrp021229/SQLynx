@@ -58,7 +58,7 @@ RUN apt-get update && apt-get -y build-dep mariadb
 USER dobigthing
 WORKDIR /home
 ARG CACHEBUST=1
-RUN git clone https://github.com/mrp021229/SQLynx.git && \
+RUN git clone https://github.com/mrp021229/SQLynx.git SQLynx && \
     cd SQLynx && git submodule update --init && \
     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && \
     cmake --build build -j && \

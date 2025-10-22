@@ -44,7 +44,8 @@ def mutation(sql):
     # log_path = "/home/output/fuzz_log.txt"
     # os.makedirs(os.path.dirname(log_path), exist_ok=True)
     mutated_sql = sqlglot_mutation.get_mutated_sql(sql)
-    # with open(log_path, "a", encoding="utf-8") as log_file:
+   # mutated_sql = sql
+   # with open(log_path, "a", encoding="utf-8") as log_file:
     #     log_file.write("[Mutated SQL Before Fill]")
     #     try:
     #         log_file.write(mutated_sql + "\n")

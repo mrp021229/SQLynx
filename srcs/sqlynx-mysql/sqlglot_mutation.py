@@ -182,7 +182,7 @@ if __name__ == "__main__":
     file_path = "/home/SQLynx/srcs/sqlynx-mysql/mysql_seed.pkl"
 
     manager.load_from_file(file_path)
-#from SQLynx-pgsql
+#from squirrel-pgsql
     sql = """
     CREATE TABLE v0 ( v1 INT , v2 INT , v3 INT CONSTRAINT xx CHECK ( v3 ) ) ;
     create index x on v0(v2, v3);
