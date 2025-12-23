@@ -10,7 +10,7 @@ For quickly start, you can build sqlynx in docker. Without any extra work, you c
 
 There are 6 DBMSs you can fuzz directly.
 
-For other DBMSs you can follow the steps in [Fuzzing a new DBMS](##Fuzz a new DBMS)
+For other DBMSs you can follow the steps in Fuzzing a new DBMS
 
 1. MySQL
 
