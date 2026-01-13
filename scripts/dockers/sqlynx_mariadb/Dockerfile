@@ -66,15 +66,15 @@ RUN git clone https://github.com/mrp021229/SQLynx.git SQLynx && \
 
 RUN git clone --depth=1 https://github.com/MariaDB/server.git mariadb && \
     mkdir bld && cd bld/ && \
-#     CC=/home/SQLynx/AFLplusplus/afl-clang-fast CXX=/home/SQLynx/AFLplusplus/afl-clang-fast++ cmake ../mariadb/ && \
-#     make -j20 && sudo cmake --install . --prefix /usr/local/mysql/
+    CC=/home/SQLynx/AFLplusplus/afl-clang-fast CXX=/home/SQLynx/AFLplusplus/afl-clang-fast++ cmake ../mariadb/ && \
+    make -j20 && sudo cmake --install . --prefix /usr/local/mysql/
 
-# RUN sudo chown dobigthing:dobigthing /usr/local/mysql/ -R && \
-#     cd /usr/local/mysql/ && \
-#     scripts/mysql_install_db --user=dobigthing
+RUN sudo chown dobigthing:dobigthing /usr/local/mysql/ -R && \
+    cd /usr/local/mysql/ && \
+    scripts/mysql_install_db --user=dobigthing
 
-# # Get map size and save it to /tmp/mapsize
-# RUN AFL_DEBUG=1 __AFL_SHM_ID=1234 /usr/local/mysql/bin/mariadbd 2>&1 | tail -n 1 | cut -d"," -f8 | cut -d" " -f 3 > /tmp/mapsize
-# WORKDIR /home/SQLynx/scripts/utils
+# Get map size and save it to /tmp/mapsize
+RUN AFL_DEBUG=1 __AFL_SHM_ID=1234 /usr/local/mysql/bin/mariadbd 2>&1 | tail -n 1 | cut -d"," -f8 | cut -d" " -f 3 > /tmp/mapsize
+WORKDIR /home/SQLynx/scripts/utils
 # ENTRYPOINT AFL_MAP_SIZE=$(cat /tmp/mapsize) python3 run.py mariadb ../../data/fuzz_root/mysql_input/
 # python3 run.py mariadb ../../data/fuzz_root/mariadb_crash/

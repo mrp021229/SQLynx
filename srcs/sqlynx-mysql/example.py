@@ -8,7 +8,7 @@ import sqlglot_mutation
 import sqlglot_fill
 from sqlglot_manager import ExpressionSetManager
 expression_manager = None
-
+sql_num=0
 def init(seed):
     global expression_manager
     expression_manager = ExpressionSetManager()
@@ -98,8 +98,13 @@ def fuzz(buf, add_buf, max_size):
             buf = bytearray(mutated_sql)
 
             if len(buf) == 0:
-                buf = bytearray(b'0')
+                table_name = f"test_table_{sql_num}"
+                buf = bytearray(
+                    f"CREATE TABLE IF NOT EXISTS {table_name} (id INT PRIMARY KEY);",
+                    encoding="utf-8", errors='ignore'
+                )
 
+sql_num += 1
         finally:
             try:
                 with open("/home/check.txt", "r+") as f:
